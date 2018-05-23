@@ -409,6 +409,10 @@ view: cars_data_large {
   measure: revenue {
     type: sum
     drill_fields: [id, name, count, year_of_registration, price, brand]
+    filters: {
+      field: price
+      value: "500 to 1000000"
+    }
     sql: ${price} ;;
     #value_format_name: usd_0
     value_format: "\"€ \"#,##0"
