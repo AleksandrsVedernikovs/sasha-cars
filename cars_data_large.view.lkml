@@ -166,7 +166,7 @@ view: cars_data_large {
               {% elsif value < 200 %} #DECF3F
               {% elsif value < 300 %} #9E9E9E
               {% else %}
-              ##802498
+              #0080ff
               {% endif %}
     -moz-border-radius: 16px;
     -webkit-border-radius: 16px;
@@ -495,7 +495,7 @@ view: cars_data_large {
               {% elsif value < 15000 %} #DECF3F
               {% elsif value < 20000 %} #9E9E9E
               {% else %}
-              ##802498
+             #0080ff
               {% endif %}
               -moz-border-radius: 16px;
               -webkit-border-radius: 16px;
@@ -530,12 +530,12 @@ view: cars_data_large {
       height: 64px;
       background: {% if value < 3200 %} #33ff00
                   {% elsif value < 5000 %} #F15854
-                  {% elsif value < 7500 %} #5DA5DA
+                  {% elsif value < 7500 %} #800000
                   {% elsif value < 10000 %} #60BD68
-                  {% elsif value < 15000 %} #DECF3F
-                  {% elsif value < 20000 %} #9E9E9E
+                  {% elsif value < 15000 %} #0080ff
+                  {% elsif value < 20000 %} #996666
                   {% else %}
-                  ##802498
+                  #ff00bf
                   {% endif %}
                   -moz-border-radius: 16px;
                   -webkit-border-radius: 16px;
