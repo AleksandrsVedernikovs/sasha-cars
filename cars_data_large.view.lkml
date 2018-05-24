@@ -177,6 +177,8 @@ view: cars_data_large {
     font-size: 12px;
     font-weight: bold;">
     <span style="line-height: 32px;">{{ brand._rendered_value }} - {{ price._rendered_value }} - {{ year_of_registration._rendered_value}}<span>
+     <div style='font-size: 14px; font-weight: 600; line-height: 1;'>    <span style="line-height: 32px;"><a target="_blank" href="https://dcl.dev.looker.com//explore/sasha_cars/cars_data_large?fields=cars_data_large.brand,cars_data_large.gearbox,cars_data_large.price,cars_data_large.logo&f[cars_data_large.days_until_sold]={{ cars_data_large.days_until_sold._filterable_value }}">{{ cars_data_large.days_until_sold._rendered_value }}</a><span>
+</div>
     <br>
     {{rendered_value}}
 
