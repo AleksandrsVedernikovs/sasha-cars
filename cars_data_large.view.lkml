@@ -23,10 +23,14 @@ view: cars_data_large {
     drill_fields: [brand,model,name,price,count]
     link:{
       label: "nice"
-      url: "/explore/german_used_cars/cars_data_large?fields=cars_data_large.brand,cars_data_large.gearbox&f[cars_data_large.count]={{ _filters['cars_data_large.count'] | url_encode }}&f[cars_data_large.brand]={{ _filters['cars_data_large.brand'] | url_encode }}"
+      url: "/explore/sasha_cars/cars_data_large?fields=cars_data_large.brand,cars_data_large.gearbox,cars_data_large.price,cars_data_large.logo&f[cars_data_large.count]={{ _filters['cars_data_large.count'] | url_encode }}&f[cars_data_large.brand]={{ _filters['cars_data_large.brand'] | url_encode }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
   }
+
+
+
+
   dimension: brand_group {
     type: string
     sql: CASE
@@ -147,6 +151,42 @@ view: cars_data_large {
     type: number
     sql: ${TABLE}.days_until_sold ;;
   }
+
+
+  dimension: days_until_sold_html {
+    type: number
+    sql: ${TABLE}.days_until_sold ;;
+    html:<div style="border:0px;
+    width: 100%;
+    height: 64px;
+    background: {% if value < 5 %} #33ff00
+              {% elsif value < 50 %} #F15854
+              {% elsif value < 75 %} #5DA5DA
+              {% elsif value < 100 %} #60BD68
+              {% elsif value < 200 %} #DECF3F
+              {% elsif value < 300 %} #9E9E9E
+              {% else %}
+              ##802498
+              {% endif %}
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    vertical-align: center;
+    text-align: center;
+    color:black;
+    font-size: 12px;
+    font-weight: bold;">
+    <span style="line-height: 32px;">{{ brand._rendered_value }} - {{ price._rendered_value }} - {{ year_of_registration._rendered_value}}<span>
+    <br>
+    {{rendered_value}}
+
+    </div> ;;
+
+  }
+
+
+
+
   measure: ave_days_sold {
     type: average
     sql: ${days_until_sold} ;;
@@ -280,6 +320,32 @@ view: cars_data_large {
     value_format: "\"€ \"#,##0"
   }
 
+
+  measure: most_expensive_item_html {
+    type: max
+    sql: ${price} ;;
+    drill_fields: [id, name, count, year_of_registration, price, brand]
+    #value_format_name: eur_0
+    value_format: "\"€ \"#,##0"
+    html:<div style="border:0px;
+    width: 100%;
+    height: 64px;
+    background: {% if value < 1000000 %}#60BD68{% else %}#F15854{% endif %}
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    vertical-align: center;
+    text-align: center;
+    color:black;
+    font-size: 12px;
+    font-weight: bold;">
+    <span style="line-height: 32px;">{{ brand._rendered_value }} - {{ model._rendered_value }} - {{ year_of_registration._rendered_value }}<span>
+    <br>
+    {{rendered_value}}
+    </div> ;;
+
+  }
+
   measure: least_expensive_item {
     type: min
     sql: ${price} ;;
@@ -370,6 +436,33 @@ view: cars_data_large {
     type: number
     sql: ${TABLE}.year_of_registration ;;
   }
+
+
+  dimension: year_of_registration_html {
+    type: number
+    sql: ${TABLE}.year_of_registration ;;
+    html:<div style="border:0px;
+    width: 100%;
+    height: 64px;
+    background: {% if value < 1990 %}#60BD68{% else %}#F15854{% endif %}
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    vertical-align: center;
+    text-align: center;
+    color:black;
+    font-size: 12px;
+    font-weight: bold;">
+    <span style="line-height: 32px;">{{ brand._rendered_value }} - {{ price._rendered_value }}<span>
+    <br>
+    {{rendered_value}}
+
+    </div> ;;
+  }
+
+
+
+
   dimension: location {
     type: location
     sql_latitude: ${location_data.latitude} ;;
@@ -380,6 +473,86 @@ view: cars_data_large {
     drill_fields: [id, name, count, year_of_registration, price, brand]
     #html: <font size="5">{{ rendered_value }}</font> ;;
   }
+
+  measure: count_html {
+    type: count
+    drill_fields: [id, name, count, year_of_registration, price, brand]
+  html:
+  <table style='background-color: transparent !important; border:none;'><tbody><tr style='border:none;'>
+  <td style='text-align: center; border:none; padding: 0; min-width: 0; width: 40px;'>
+  <div style="border:0px;
+  width: 64px;
+  height: 64px;
+  background: {% if value < 3200 %} #33ff00
+              {% elsif value < 5000 %} #F15854
+              {% elsif value < 7500 %} #5DA5DA
+              {% elsif value < 10000 %} #60BD68
+              {% elsif value < 15000 %} #DECF3F
+              {% elsif value < 20000 %} #9E9E9E
+              {% else %}
+              ##802498
+              {% endif %}
+              -moz-border-radius: 16px;
+              -webkit-border-radius: 16px;
+              border-radius: 16px;
+              line-height: 32px;
+              vertical-align: middle;
+              text-align: center;
+              color:black;
+              font-size: 12px;
+              font-weight: bold;">
+              {{ value }}
+              </div>
+              </td>
+              <td style='text-align: center; border: none;'>
+              <div style='font-size: 14px; font-weight: 600; line-height: 1;'>{{ location_data.state._rendered_value }}</div>
+
+              </td>
+              </tr></tbody></table>
+
+              ;;
+                }
+
+  measure: count_html_city {
+    type: count
+    drill_fields: [id, name, count, year_of_registration, price, brand]
+    html:
+      <table style='background-color: transparent !important; border:none;'><tbody><tr style='border:none;'>
+      <td style='text-align: center; border:none; padding: 0; min-width: 0; width: 40px;'>
+      <div style="border:0px;
+      width: 64px;
+      height: 64px;
+      background: {% if value < 3200 %} #33ff00
+                  {% elsif value < 5000 %} #F15854
+                  {% elsif value < 7500 %} #5DA5DA
+                  {% elsif value < 10000 %} #60BD68
+                  {% elsif value < 15000 %} #DECF3F
+                  {% elsif value < 20000 %} #9E9E9E
+                  {% else %}
+                  ##802498
+                  {% endif %}
+                  -moz-border-radius: 16px;
+                  -webkit-border-radius: 16px;
+                  border-radius: 16px;
+                  line-height: 32px;
+                  vertical-align: middle;
+                  text-align: center;
+                  color:black;
+                  font-size: 12px;
+                  font-weight: bold;">
+                  {{ value }}
+                  </div>
+                  </td>
+                  <td style='text-align: center; border: none;'>
+                  <div style='font-size: 14px; font-weight: 600; line-height: 1;'>{{ location_data.city._rendered_value }}</div>
+
+                  </td>
+                  </tr></tbody></table>
+
+                  ;;
+  }
+
+
   measure: most_recent_sold {
     type: date
     sql: MAX(${last_seen_date}) ;;
