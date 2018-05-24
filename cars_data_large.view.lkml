@@ -340,8 +340,11 @@ view: cars_data_large {
     font-size: 12px;
     font-weight: bold;">
     <span style="line-height: 32px;">{{ brand._rendered_value }} - {{ model._rendered_value }} - {{ year_of_registration._rendered_value }}<span>
+    <div style='font-size: 14px; font-weight: 600; line-height: 1;'>    <span style="line-height: 32px;"><a target="_blank" href="https://dcl.dev.looker.com//explore/sasha_cars/cars_data_large?fields=cars_data_large.brand,cars_data_large.gearbox,cars_data_large.price,cars_data_large.logo&f[cars_data_large.most_expensive_item]={{ cars_data_large.most_expensive_item._filterable_value }}">{{ cars_data_large.most_expensive_item._rendered_value }}</a><span>
+</div>
     <br>
     {{rendered_value}}
+
     </div> ;;
 
   }
@@ -454,6 +457,8 @@ view: cars_data_large {
     font-size: 12px;
     font-weight: bold;">
     <span style="line-height: 32px;">{{ brand._rendered_value }} - {{ price._rendered_value }}<span>
+    <div style='font-size: 14px; font-weight: 600; line-height: 1;'>    <span style="line-height: 32px;"><a target="_blank" href="https://dcl.dev.looker.com//explore/sasha_cars/cars_data_large?fields=cars_data_large.brand,cars_data_large.gearbox,cars_data_large.price,cars_data_large.logo&f[cars_data_large.year_of_registration]={{ cars_data_large.year_of_registration._filterable_value }}">{{ cars_data_large.year_of_registration._rendered_value }}</a><span>
+</div>
     <br>
     {{rendered_value}}
 
@@ -505,7 +510,8 @@ view: cars_data_large {
               </div>
               </td>
               <td style='text-align: center; border: none;'>
-              <div style='font-size: 14px; font-weight: 600; line-height: 1;'>{{ location_data.state._rendered_value }}</div>
+              <div style='font-size: 14px; font-weight: 600; line-height: 1;'>    <span style="line-height: 32px;"><a target="_blank" href="https://dcl.dev.looker.com//explore/sasha_cars/cars_data_large?fields=cars_data_large.brand,cars_data_large.gearbox,cars_data_large.price,cars_data_large.logo&f[location_data.state]={{ location_data.state._filterable_value }}">{{ location_data.state._rendered_value }}</a><span>
+</div>
 
               </td>
               </tr></tbody></table>
