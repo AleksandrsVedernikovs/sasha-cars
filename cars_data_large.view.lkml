@@ -21,6 +21,7 @@ view: cars_data_large {
     type: string
     sql: ${TABLE}.brand ;;
     drill_fields: [brand,model,name,price,count]
+    full_suggestions: yes
     link:{
       label: "nice"
       url: "/explore/sasha_cars/cars_data_large?fields=cars_data_large.brand,cars_data_large.gearbox,cars_data_large.price,cars_data_large.logo&f[cars_data_large.count]={{ _filters['cars_data_large.count'] | url_encode }}&f[cars_data_large.brand]={{ _filters['cars_data_large.brand'] | url_encode }}"
@@ -234,6 +235,7 @@ view: cars_data_large {
   dimension: model {
     type: string
     sql: ${TABLE}.model ;;
+    full_suggestions: yes
   }
   dimension: month_of_regestration_{
     hidden: yes
