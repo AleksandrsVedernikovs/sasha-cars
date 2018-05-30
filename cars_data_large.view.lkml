@@ -442,6 +442,8 @@ view: cars_data_large {
   dimension: year_of_registration {
     type: number
     sql: ${TABLE}.year_of_registration ;;
+    full_suggestions: yes
+    value_format: "0"
   }
 
 
