@@ -129,6 +129,7 @@ view: cars_data_large {
 
   dimension: dynamic_timeframe {
     type: string
+    can_filter: no
     sql:
     CASE
     WHEN {% condition timeframe_picker %} 'Date' {% endcondition %} THEN TO_CHAR(${cars_data_large.date_created_date}, 'YYYY_MM_DD')
@@ -140,7 +141,7 @@ view: cars_data_large {
   dimension: date_test{
     type: date_time
     group_label: "date_created"
-    sql: ${date_created_raw};;
+    sql: ${date_created_time};;
   }
 
   dimension: days_on_site {

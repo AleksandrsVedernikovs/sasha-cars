@@ -26,7 +26,14 @@ explore: cars_data_large {
     sql_on: ${cars_data_large.brand} = ${sales_facts.cars_brand} AND
       ${cars_data_large.year_of_registration} = ${sales_facts.year_of_registration};;
   }
+
+  join: dt_test {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${cars_data_large.brand} = ${dt_test.brand} ;;
+  }
 }
+explore: dt_test {}
 
 explore: test {}
 
