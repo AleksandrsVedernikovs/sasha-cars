@@ -1,4 +1,4 @@
-- dashboard: sasha_thesis
+- dashboard: sasha_ thesis
   title: sasha_thesis - (test)
   layout: newspaper
   elements:
