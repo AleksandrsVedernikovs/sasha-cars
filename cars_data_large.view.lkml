@@ -154,6 +154,21 @@ view: cars_data_large {
     sql: ${TABLE}.days_until_sold ;;
   }
 
+  dimension: user_id {
+    tags: ["user_id", "brand", "fuel_type"]
+    type: number
+    sql: ${TABLE}.id ;;
+  }
+
+
+  measure: testing_m {
+    tags: ["email", "user_id"]
+    type: number
+    sql: 1 ;;
+  }
+
+
+
 
   dimension: days_until_sold_html {
     type: number

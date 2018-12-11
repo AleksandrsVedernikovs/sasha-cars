@@ -1,5 +1,5 @@
-- dashboard: sasha_ thesis
-  title: sasha_thesis - (test)
+- dashboard: sasha_thesis
+  title: sasha_thesis
   layout: newspaper
   elements:
   - title: amount_of_adverts_published
