@@ -747,16 +747,6 @@ view: cars_data_large {
     }
   }
 
-  dimension: test {
-    type: string
-    label_from_parameter: sasha_test
-    sql: CASE
-         WHEN {% parameter sasha_test %} = 'location' THEN
-           ${location_data.location}::VARCHAR
-         ELSE
-           NULL
-       END  ;;
-  }
 
 
 

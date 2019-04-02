@@ -11,6 +11,13 @@ map_layer: germany_states {
   property_key: "NAME_1"
 }
 
+explore: table_a {
+  join: table_b {
+    sql_on: ${table_a.id}=${table_b.a_id} ;;
+    relationship: one_to_many
+  }
+}
+
 explore: cars_data_large {
   #sql_always_where: (${power_ps} >= 50 AND ${power_ps} <= 750) ;;
 
