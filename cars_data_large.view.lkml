@@ -15,6 +15,11 @@ view: cars_data_large {
     }
   }
 
+  measure: api_test {
+    type: max
+    sql: ${id} ;;
+  }
+
 #comment
 
   dimension: brand {
@@ -45,6 +50,32 @@ view: cars_data_large {
           WHEN ${TABLE}.brand IN ('audi','bmw','jaguar','landrover','mercedesbenz','porsche') THEN 'premium'
           ELSE null
           END ;;
+  }
+
+
+  dimension: brand_test {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.brand IN ('lada','trabant','other');;
+        label: "other"
+      }
+      when: {
+        sql: ${TABLE}.brand IN ('chevrolet','daewoo','dacia') ;;
+        label: "budget"
+      }
+      when: {
+        sql: ${TABLE}.brand IN ('hyundai','kia','skoda','daihatsu');;
+        label:"budget_plus"
+        }
+
+      when: {
+        sql: ${TABLE}.brand IN ('chrysler','fiat','ford','citroen','mitsubishi','opel','rover','seat','suzuki') ;;
+        label: "mid_minus"
+      }
+      # Possibly more when statements
+      else: "blalllllllllllllllllllllllllllllllllllllll"
+    }
   }
 
 #   dimension: logo_test {
@@ -122,6 +153,13 @@ view: cars_data_large {
     sql: ${TABLE}.date_created ;;
   }
 
+  filter: date_filter_new {suggest_dimension: date_created_date
+    type: date_time
+    sql: {% condition cars_data_large.date_filter_new %}${date_created_date} {% endcondition %} ;;
+  }
+
+
+
   filter: timeframe_picker {
     type: string
     suggestions: ["Date", "Week", "Month"]
@@ -155,7 +193,7 @@ view: cars_data_large {
   }
 
   dimension: user_id {
-    tags: ["user_id", "brand", "fuel_type"]
+    tags: ["user_id", "email"]
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -501,6 +539,7 @@ view: cars_data_large {
     #html: <font size="5">{{ rendered_value }}</font> ;;
   }
 
+
   measure: count_html {
     type: count
     drill_fields: [id, name, count, year_of_registration, price, brand]
@@ -731,7 +770,15 @@ view: cars_data_large {
     type: string
   }
 
+  filter: brand_filter_new {suggest_dimension: brand
+    type: string
+    sql: {% condition cars_data_large.brand_filter_new %}${brand} {% endcondition %} ;;
+  }
 
+  filter: TESTYESNOFILTER {suggest_dimension: brand
+    type: yesno
+    sql: ${brand};;
+  }
 
 
 
