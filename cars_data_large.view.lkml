@@ -126,7 +126,7 @@ view: cars_data_large {
           when ${brand} = 'lancia' then 'http://www.carlogos.org/logo/Lancia-logo-2007-1920x1080.png'
           when ${brand} = 'rover' then 'http://www.carlogos.org/logo/Rover-logo-2003-3840x2160.png'
           when ${brand} = 'lada' then 'http://www.carlogos.org/logo/Lada-logo-silver-1366x768.jpg'
-          when ${brand} = 'trabant' then 'https://logo-png.com/logo/trabant-logo.png'
+          when ${brand} = 'trabant' then 'https://www.carsurer.com/sites/default/files/styles/colorbox/public/2017-09/trabant-car-logo.jpg?itok=sCeWF3YU'
           when ${brand} = 'sonstigeautos' then 'http://icons.iconarchive.com/icons/icons8/ios7/256/Transport-Cars-icon.png'
           else null
           end;;
