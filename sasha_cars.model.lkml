@@ -1,0 +1,51 @@
+connection: "sasha-thesis"
+
+# include all the views
+include: "*.view"
+
+# include all the dashboards
+include: "*.dashboard"
+
+map_layer: germany_states {
+  file: "germany.json"
+  property_key: "NAME_1"
+}
+
+explore: table_a {
+  join: table_b {
+    sql_on: ${table_a.id}=${table_b.a_id} ;;
+    relationship: one_to_many
+  }
+}
+
+explore: cars_data_large {
+  #sql_always_where: (${power_ps} >= 50 AND ${power_ps} <= 750) ;;
+
+  join: location_data {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${location_data.postal_code} = ${cars_data_large.postal_code};;
+  }
+
+  join: sales_facts {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${cars_data_large.brand} = ${sales_facts.cars_brand} AND
+      ${cars_data_large.year_of_registration} = ${sales_facts.year_of_registration};;
+  }
+
+  join: dt_test {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${cars_data_large.brand} = ${dt_test.brand} ;;
+  }
+}
+explore: dt_test {}
+
+explore: test {}
+
+explore: location_data {}
+
+explore: sales_facts {}
+
+explore: cars_data_test {}
